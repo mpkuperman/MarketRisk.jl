@@ -1,2 +1,2 @@
 # MarketRisk.jl
-Market Risk measures for your portfolio
+High performance and differentiable Market Risk measures for your portfolio
