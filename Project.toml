@@ -1,0 +1,4 @@
+name = "MarketRisk"
+uuid = "a023d85a-3a31-486e-88e8-289a01a8187b"
+authors = ["mpkuperman <mpkuperman@gmail.com>"]
+version = "0.1.0"
