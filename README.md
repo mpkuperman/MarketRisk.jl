@@ -1,2 +1,8 @@
-# MarketRisk.jl
-High performance differentiable Market Risk measures for your portfolio
+**MarketRisk.jl** is a Julia library wich provides high performant differentiable market risk measures. 
+
+
+# Examples
+# Installation
+# Authors
+# License
+
