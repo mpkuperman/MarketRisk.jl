@@ -1,5 +1,5 @@
 
-struct ParametricExpectedTailLoss{M, S, D <: Distribution}
+struct ParametricExpectedTailLoss{M, S, D <: Distribution} <: MarketRiskMeasure
     μ::M
     Σ::S
     dist::D

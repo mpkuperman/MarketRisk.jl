@@ -1,4 +1,4 @@
-struct ParametricValueAtRisk{V, M, D <: Distribution}
+struct ParametricValueAtRisk{V, M, D<:Distribution} <: MarketRiskMeasure
     μ::V
     Σ::M
     dist::D
