@@ -3,7 +3,6 @@ struct ParametricValueAtRisk{V, M, D}
     Σ::M
     dist::D
 end
-    
 
 function ValueAtRisk(μ, Σ, dist)
     return ParametricValueAtRisk(μ, Σ, dist)
@@ -28,17 +27,17 @@ function compute(var::ParametricValueAtRisk{V, M, D}, h, alpha) where {V, M, D<:
 end
 
 
-function compute(var::ParametricValueAtRisk{V, M, D}, h, alpha) where {V, M, D<:MixtureModel}
-    @unpack μ, Σ, dist = var 
+# function compute(var::ParametricValueAtRisk{V, M, D}, h, alpha) where {V, M, D<:MixtureModel}
+#     @unpack μ, Σ, dist = var 
 
-    args = (h, alpha, dist)
+#     args = (h, alpha, dist)
 
-    function opt_func(x, a)
-        return cdf(dist, x) - a
-    end
+#     function opt_func(x, a)
+#         return cdf(dist, x) - a
+#     end
        
-    return - find_zero(opt_func, 0.0, Roots.Newton())
-end
+#     return - find_zero(opt_func, 0.0, Roots.Newton(), p=args)
+# end
 
 # function compute(h, alpha, nu)
 #     args = (h, alpha, self.mixture_w, self.pi_mu, self.pi_sigma, self._dist_function, nu)

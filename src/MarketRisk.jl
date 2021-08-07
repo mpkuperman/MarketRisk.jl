@@ -6,7 +6,8 @@ using Parameters
 using Roots
 
 include("value_at_risk.jl")
+include("expected_tail_loss.jl")
 
-export ValueAtRisk, compute
+export Normal, TDist, ValueAtRisk, ExpectedTailLoss, MixtureModel, compute
 
-end # module
+end
