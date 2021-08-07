@@ -1,4 +1,4 @@
-struct ParametricValueAtRisk{V, M, D}
+struct ParametricValueAtRisk{V, M, D <: Distribution}
     μ::V
     Σ::M
     dist::D

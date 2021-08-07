@@ -1,5 +1,5 @@
 
-struct ParametricExpectedTailLoss{M, S, D}
+struct ParametricExpectedTailLoss{M, S, D <: Distribution}
     μ::M
     Σ::S
     dist::D
