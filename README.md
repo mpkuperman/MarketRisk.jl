@@ -5,6 +5,9 @@
 
 
 # Examples
+
+**VaR example:**
+
 ```Julia 
 using MarketRisk
 
@@ -17,6 +20,8 @@ var = ValueAtRisk(μ, Σ, N)
 
 compute(var, 10, 0.1)
 ```
+
+**ETL example:**
 
 ```Julia 
 using MarketRisk
