@@ -5,6 +5,37 @@
 
 
 # Examples
+```Julia 
+using MarketRisk
+
+μ = 0.1
+Σ = 0.2
+ν = 4.13
+N = Normal()
+
+var = ValueAtRisk(μ, Σ, N)
+
+compute(var, 10, 0.1)
+```
+
+```Julia 
+using MarketRisk
+
+μ = 0.0
+Σ = 0.3 ^ 2
+
+ν = 4.13
+
+h = 10 / 250
+α = 0.01
+
+T = TDist(ν)
+
+t_etl = ExpectedTailLoss(μ, Σ, T)
+
+compute(t_etl, h, α)
+```
+
 # Installation
 # Authors
 # License
