@@ -11,18 +11,19 @@ h = 10 / 250
 N = Normal()
 T = TDist(ν)
 
-normal_etl = ExpectedTailLoss(μ, Σ, N)
-t_etl = ExpectedTailLoss(μ, Σ, T)
+normal_etl = ExpectedTailLoss(μ, Σ, h, α, N)
+t_etl = ExpectedTailLoss(μ, Σ, h, α, T)
 
-compute(normal_etl, h, α)
+compute(normal_etl)
+compute(t_etl)
 
 νs = [5, 10, 15, 20, 25, 10000]
 etls = Float64[]
 
 for ν in νs
     td = TDist(ν)
-    te = ExpectedTailLoss(μ, Σ, td)
-    push!(etls, compute(te, h, α))
+    te = ExpectedTailLoss(μ, Σ, h, α, td)
+    push!(etls, compute(te))
 end
 
 etls
