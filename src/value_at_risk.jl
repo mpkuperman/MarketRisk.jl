@@ -1,29 +1,30 @@
-struct ParametricValueAtRisk{V, M, D<:Distribution} <: MarketRiskMeasure
+struct ParametricValueAtRisk{V, M, H, A, D<:Distribution} <: MarketRiskMeasure
     μ::V
     Σ::M
+    h::H
+    α::A
     dist::D
 end
 
-function ValueAtRisk(μ, Σ, dist)
-    return ParametricValueAtRisk(μ, Σ, dist)
+function ValueAtRisk(μ, Σ, h, α, dist)
+    return ParametricValueAtRisk(μ, Σ, h, α, dist)
 end
 
+# function ValueAtRisk(portfolio, dist)
+#     return ParametricValueAtRisk
+# end
 
-function ValueAtRisk(portfolio, dist)
-    return ParametricValueAtRisk
+function compute(var::ParametricValueAtRisk{V, M, H, A, D}) where {V, M, H, A, D<:Normal}
+    @unpack μ, Σ, h, α, dist = var 
+
+    @. sqrt(h) * quantile(dist, 1 - α) * Σ - h * μ
 end
 
-function compute(var::ParametricValueAtRisk{V, M, D}, h, alpha) where {V, M, D<:Normal}
-    @unpack μ, Σ, dist = var 
-
-    sqrt(h) * quantile(dist, 1 - alpha) * Σ - h * μ
-end
-
-function compute(var::ParametricValueAtRisk{V, M, D}, h, alpha) where {V, M, D<:TDist}
-    @unpack μ, Σ, dist = var 
+function compute(var::ParametricValueAtRisk{V, M, H, A, D}) where {V, M, H, A, D<:TDist}
+    @unpack μ, Σ, h, α, dist = var 
     @unpack ν = dist
 
-    sqrt((ν - 2) / ν) * sqrt(h) * quantile(dist, 1 - alpha) * Σ - h * μ
+    @. sqrt((ν - 2) / ν) * sqrt(h) * quantile(dist, 1 - α) * Σ - h * μ
 end
 
 
