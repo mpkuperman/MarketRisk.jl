@@ -13,12 +13,14 @@ using MarketRisk
 
 μ = 0.1
 Σ = 0.2
-ν = 4.13
+h = 10 / 250
+α = 0.1
+
 N = Normal()
 
-var = ValueAtRisk(μ, Σ, N)
+var = ValueAtRisk(μ, Σ, h, α, N)
 
-compute(var, 10, 0.1)
+compute(var)
 ```
 
 **ETL:**
@@ -27,7 +29,7 @@ compute(var, 10, 0.1)
 using MarketRisk
 
 μ = 0.0
-Σ = 0.3 ^ 2
+Σ = 0.3
 
 ν = 4.13
 
@@ -36,9 +38,9 @@ h = 10 / 250
 
 T = TDist(ν)
 
-t_etl = ExpectedTailLoss(μ, Σ, T)
+t_etl = ExpectedTailLoss(μ, Σ, h, α, T)
 
-compute(t_etl, h, α)
+compute(t_etl)
 ```
 
 # Installation
