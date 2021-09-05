@@ -47,4 +47,4 @@ compute(t_etl)
 # Authors
 # License
 
-**MarketRisk.jl** is licensed by GNU General Public License v3.0. For more details please see [LICENSE](https://github.com/mpkuperman/MarketRisk.jl/blob/main/LICENSE).
+**MarketRisk.jl** is licensed by GNU General Public License v3.0. For more details please see the [LICENSE](https://github.com/mpkuperman/MarketRisk.jl/blob/main/LICENSE) file.
