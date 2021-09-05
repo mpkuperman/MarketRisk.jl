@@ -2,7 +2,7 @@ module MarketRisk
 
 using LinearAlgebra
 using Distributions
-using GalacticOptim
+using ForwardDiff
 using Parameters
 using Roots
 
