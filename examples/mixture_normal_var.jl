@@ -7,7 +7,6 @@ h = 10 / 250
 αs = [0.001, 0.01, 0.05, 0.1]
 
 m = MixtureModel(Normal, [(h * μ[i], sqrt(h) * Σ[i]) for i in 1:2], ω)
-# mt = MixtureModel(TDist[TDist(2.), TDist(1.)], ω)
 
 mixture_var = ValueAtRisk(μ, Σ, h, αs[1], m)
 compute(mixture_var)
