@@ -3,6 +3,7 @@ module MarketRisk
 using LinearAlgebra
 using Distributions
 using ForwardDiff
+using FiniteDifferences
 using Parameters
 using Roots
 
