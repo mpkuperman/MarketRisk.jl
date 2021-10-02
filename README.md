@@ -1,4 +1,4 @@
-**MarketRisk.jl** is a Julia library wich provides high performance market risk measures for your portfolio. It currently supports:
+**MarketRisk.jl** is a Julia library wich provides high-performance market risk measures for your portfolio. It currently supports:
 
 -  [Value at Risk (VaR)](https://en.wikipedia.org/wiki/Value_at_risk): Most popular market risk measure which gives maximum possible loss given a confidence level and a time horizon.
 
