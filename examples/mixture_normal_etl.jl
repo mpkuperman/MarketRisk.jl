@@ -1,11 +1,14 @@
 using MarketRisk
 
-w = np.array([0.2, 0.8])
-mean = np.array([0.0, 0.0])
-sigma = np.array([0.6 ** 2, 0.15 ** 2])
-p = Portfolio(w, mean, sigma)
-etl = ExpectedTailLoss(p.mu, p.variance, "MixtureNormal", mixture_weights=np.array([0.5, 0.5]))
+ω = [0.5, 0.5]
+μ = [0., 0.]
+Σ = [0.018, 0.072]
 
+α = 0.01
 h = 10 / 250
-alpha = 0.01
-print(etl.compute(h, alpha))
+
+m = MixtureModel(Normal, [(h * μ[i], sqrt(h) * sqrt(Σ[i])) for i in 1:2], ω)
+
+mixture_etl = ExpectedTailLoss(μ, Σ, h, α, m)
+compute(mixture_etl)
+
