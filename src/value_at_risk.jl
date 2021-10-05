@@ -48,7 +48,7 @@ function compute(var::ParametricValueAtRisk{V, M, H, A, D}) where {V, M, H<:Real
     return var 
 end
 
-function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Normal, F}}) where {V, M, H, A<:Real, B, D, F}
+function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Normal, F}}) where {V, M, H, A, B, D, F}
     @unpack μ, Σ, h, α, dist = var 
 
     function opt_func(x, α)
@@ -57,7 +57,7 @@ function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Norma
 
     D_opt(f) = x -> ForwardDiff.derivative(f, float(x))
       
-    return - find_zero((x -> opt_func(x, αᵢ), D_opt(opt_func)), 0.0, Roots.Newton())
+    return - find_zero((x -> opt_func(x, α), D_opt(x -> opt_func(x, α))), 0.0, Roots.Newton())
 end
 
 function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Normal, F}}) where {V, M, H, A<:Array{Float64}, B, D, F}

@@ -17,7 +17,7 @@ N_n = Normal()
 
 var_n = ValueAtRisk(m_n, s_n, h_n, α_n, N_n)
 
-@test compute(var_n) ≈ 1.490889
+@test compute(var_n) ≈ 1.4908892538487946
 
 # Test t-Student VaR
 μ_t = 0.0
@@ -31,7 +31,7 @@ T_t = TDist(ν_t)
 
 var_t = ValueAtRisk(μ_t, Σ_t, h_t, α_t, T_t)
 
-@test compute(var_t) ≈ 0.15638784
+@test compute(var_t) ≈ 0.15638781416305675 
 
 
 # Test mixture normal VaR
@@ -45,17 +45,5 @@ m_nm = MixtureModel(Normal, [(h_nm * μ_nm[i], sqrt(h_nm) * Σ_nm[i]) for i in 1
 
 var_nm = ValueAtRisk(μ_nm, Σ_nm, h_nm, α_nm, m_nm)
 
-@test compute(var_nm) ≈ 0.21616624
+@test compute(var_nm) ≈ 0.21616624418759633
 
-# Test mixture t-Student VaR
-ω_tm = [0.75, 0.25]
-μ_tm = [0.0, - 0.1]
-Σ_tm = [0.2, 0.4]
-α_tm = 0.001
-h_tm = 10 / 250
-
-m_tm = MixtureModel(Normal, [(h_tm * μ_tm[i], sqrt(h_tm) * Σ_tm[i]) for i in 1:2], ω_tm)
-
-var_tm = ValueAtRisk(μ_tm, Σ_tm, h_tm, α_tm, m_tm)
-
-@test compute(var_tm) ≈ 0.3451456

@@ -11,7 +11,7 @@ function ExpectedTailLoss(μ, Σ, h, α, distribution)
     return ParametricExpectedTailLoss(μ, Σ, h, α, distribution)
 end
 
-function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M, S, H, A, D <: Normal}
+function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M<:Real, S<:Real, H<:Real, A<:Real, D<:Normal}
     @unpack μ, Σ, h, α, dist = etl
 
     xα = quantile(dist, α)
@@ -19,7 +19,7 @@ function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M, S, H,
     return 1 / α * pdf(dist, xα) * sqrt(h) * Σ - h * μ
 end
 
-function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M, S, H, A, D <: Normal}
+function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M<:Real, S<:Real, H<:Real, A<:Array{Real}, D <: Normal}
     @unpack μ, Σ, h, α, dist = etl
 
     etl = Float64[]
