@@ -46,6 +46,9 @@ compute(t_etl)
 
 # Installation
 # Authors
+
+**MarketRisk.jl** is authored by [mpkuperman](https://github.com/mpkuperman)
+
 # License
 
 **MarketRisk.jl** is licensed by GNU General Public License v3.0. For more details please see the [LICENSE](https://github.com/mpkuperman/MarketRisk.jl/blob/main/LICENSE) file.
