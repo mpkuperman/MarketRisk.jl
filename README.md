@@ -45,6 +45,9 @@ compute(t_etl)
 ```
 
 # Installation
+
+**MarketRisk.jl** can be installed via ```] add MarketRisk```
+
 # Authors
 
 **MarketRisk.jl** is authored by [mpkuperman](https://github.com/mpkuperman)
