@@ -5,7 +5,6 @@ using MarketRisk
 Σ = [0.2, 0.4]
 αs = 0.001
 h = 10 / 250
-nus = [10., 5.]
 
 m = MixtureModel(Normal, [(h * μ[i], sqrt(h) * Σ[i]) for i in 1:2], ω)
 
