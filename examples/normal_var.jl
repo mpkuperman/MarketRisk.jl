@@ -6,7 +6,7 @@ w = [1.8, 2.2, 3.6, 5.2, 2.0, 7.0]
 
 h = 10 / 250
 α = 0.01
-
+αs = [0.01, 0.05, 0.1, 0.12]
 p = Portfolio(w, μ, Σ)
 
 m = mean(p)
@@ -14,7 +14,7 @@ s = sqrt(variance(p))
 N = Normal()
 
 normal_var = ValueAtRisk(m, s, h, α, N)
+normal_var1 = ValueAtRisk(m, s, h, αs, N)
 
 compute(normal_var)
-
-
+compute(normal_var1)
