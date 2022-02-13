@@ -26,7 +26,21 @@ end
 function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Normal, F}}) where {V, M, H, A, B, D, F}
     @unpack μ, Σ, h, α, dist = var 
 
+    opt(x, α) = cdf(dist, x) - α
     D_opt(f) = x -> ForwardDiff.derivative(f, float(x))
       
-    @. - find_zero((x -> cdf(dist, x) - α, D_opt(x -> opt_func(x, α))), 0.0, Roots.Newton())
+    - find_zero((x -> opt(x, α), D_opt(x -> opt(x, α))), 0.0, Roots.Newton())[1]
+end
+
+function compute(var::ParametricValueAtRisk{V, M, H, A, MixtureModel{B, D, Normal, F}}) where {V, M, H, A<:Vector{<:Real}, B, D, F}
+    @unpack μ, Σ, h, α, dist = var 
+
+    opt(x, α) = cdf(dist, x) - α
+    D_opt(f) = x -> ForwardDiff.derivative(f, float(x))
+    
+    v = zeros(eltype(α), length(α))
+    for i in 1:length(α)  
+        v[i] = - find_zero((x -> opt(x, α[i]), D_opt(x -> opt(x, α[i]))), 0.0, Roots.Newton())[1]
+    end
+    v
 end
