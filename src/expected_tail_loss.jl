@@ -14,7 +14,7 @@ end
 function compute(etl::ParametricExpectedTailLoss{M, S, H, A, D}) where {M, S, H, A, D<:Normal}
     @unpack μ, Σ, h, α, dist = etl
 
-    xα = @. quantile.(dist, α)
+    xα = @. quantile(dist, α)
 
     @. 1 / α * pdf(dist, xα) * sqrt(h) * Σ - h * μ
 end
